@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  create a class for movie which contains generic information about "gone with the wind"
+      movie = {
+        title: "Gone With Wind",
+        year: 1939,
+        actressLead: "Vivien Leigh",
+        actorLead: "Clark Gable",
+        genre: "Epic",
+        academyAwards: 8,
+
+        // create more information about profit, but it can be broken down into year of release and to date profit
+        // not much different for actually getting it, but its nice to organize
+        profits: {
+          yearOfRelease: 10,
+          subsequentToDate: 40,
+        },
+
+        // function "leading role" that takes parameter variable actor and returns the actor variable for "this" class
+        //    explained the rest where function is actually called with parameter
+        //  basically, just a flexible way to call upon whatever we may need in the moment
+        //    we could want the actor to be actorLead or actressLead, have yet to decide
+        leadingRole: function (actor) {
+          return this[actor];
+        },
+
+        // Another function "formatInfo" that takes no parameter but simply returns information for "this" instance
+        formatInfo: function () {
+          return `${this.title} was released in ${this.year} It tells the story of the civil war in the US`;
+        },
+
+        // just making another attribute but it's put all the way down here for some reason
+        quote: "Frankly My Dear, I don't give a damn",
+      };
+
+    //  simply logging variables very straight forward.
+    //  note that movie is the object name, if you wanted title you would do movie.title
+    //  when you log the object name it actually prints "object" with a drop down arrow to see object attributes
+    //       so very useful for seeing values so keep it in mind for later
+      console.log(movie);
+      console.log("Most famous quote from the movie :" + movie.quote);
+
+      // we set "role" variable equal to leadingRole function that is part of movie class
+      // however because there is leading actor and actress, we make it so that we can reuse it
+      //  we give it parameter of "actorLead" first time, which is given as parameter to function
+      //    function then looks for anywhere in "this" class that is set to "actorLead" before returning it
+      //    we are then returned lead actor's name of Clark Gable
+      //  We call function again and give it parameter of "actressLead"
+      //    function looks for anywhere in "this" class that is set to "actressLead" and returns value associated
+      //    value returned is Vivian Leigh
+      let role = movie.leadingRole("actorLead");
+      console.log(role);
+      console.log("Leading role , " + movie.leadingRole("actressLead"));
+
+      //  creates variable "rolesWithMostVotes" set equal to "actorLead"
+      //  calls upon previously established function "leadingRole" using roleWithMostVotes or "actorLead" as par.
+      //  this is a way to make a function to print out whatever actor got the most votes and make it flexible
+      //  if we changed it to = "actressLead" it would have the other name
+      //  even though its in " " think of it as looking for it, so if you input something not in class its undefined
+      roleWithMostVotes = "actorLead";
+      console.log("Role with most votes is " + movie.leadingRole(roleWithMostVotes));
+
+      //  another very straightforward way of logging info but go through profits section first
+      console.log("profits the year of release : " + movie.profits.yearOfRelease);
+    </script>
+  </body>
+</html>
